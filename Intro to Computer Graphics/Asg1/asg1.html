@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Draw a point (1)</title>
+  </head>
+
+  <body onload="main()">
+    <canvas id="webgl" width="400" height="400">
+    Please use a browser that supports "canvas"
+    </canvas>
+
+    <script src="lib/webgl-utils.js"></script>
+    <script src="lib/webgl-debug.js"></script>
+    <script src="lib/cuon-utils.js"></script>
+    <script src="Circle.js"></script>
+    <script src="Triangle.js"></script>
+    <script src="Point.js"></script>
+    <script src="asg1.js"></script>
+    <br>
+    <br>
+    <button id="ClearCanvas">Clear Canvas</button>
+    <br>
+    <br>
+    <!--SHAPE SELECTION -->
+    <label for="ShapeSel">Drawing Mode:</label>
+    <br>
+    <button id="SquareSel">Squares</button>
+    <button id="TriangleSel">Triangles</button>
+    <button id="CircleSel">Circles</button>
+    <!--COLOR SELECTION -->
+    <p><span style="font-weight:bold">Shape Color:</span></p>
+    <div>
+      <!-- Added output boxes to show the input of colors
+      modified from source: https://stackoverflow.com/questions/10004723/html5-input-type-range-show-range-value
+      -->
+      <form name="registrationForm">
+        <label for="Red" style="color: red">Red
+          <input type="range" name="Red" class="slider" id="Red" value="255" min="0" max="255" oninput="redValOutput.value = Red.value">
+          <output name="redValOutput" id="redValOutput">255</output></label>
+          <label for="Green" style="color: green">Green
+          <input type="range" name="Green" id="Green" value="0" min="0" max="255" oninput="greenValOutput.value = Green.value">
+          <output name="greenValOutput" id="greenValOutput">0</output></label>
+          <label for="Blue" style="color: blue">Blue
+          <input type="range" name="Blue" id="Blue" value="0" min="0" max="255" oninput="blueValOutput.value = Blue.value">
+          <output name="blueValOutput" id="blueValOutput">0</output></label>
+          <label for="Alpha">Alpha: 
+          <input type="range" name="Alpha" class="slider" id="Alpha" value="100" min="0" max="100" oninput="alphaValOutput.value = Alpha.value/100">
+          <output name="alphaValOutput" id="alphaValOutput">1</output></label>
+          <br>
+          <br>
+          <label for="Size">Size: 
+          <input type="range" name="Size" class="slider" id="Size" value="5" min="1" max="100" oninput="sizeValOutput.value = Size.value">
+          <output name="sizeValOutput" id="sizeValOutput">5</output></label>
+          <label for="SegCount">(Circles) Segment Count:
+          <input type="range" name="SegCount" class="slider" id="SegCount" value="10" min="1" max="100" oninput="segCountValOutput.value = SegCount.value">
+          <output name="segCountValOutput" id="segCountValOutput">10</output></label>
+      </form>
+      
+    </div>
+    <p>
+      <br>
+      <br>
+      <br>
+      NOTES:
+      <br>
+      Sliders have their values to the right of it and will update based on slider.
+      <br>
+      alpha is also implemented as a slider.
+    </p>
+  </body>
+</html>

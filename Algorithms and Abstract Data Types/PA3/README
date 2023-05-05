@@ -1,0 +1,12 @@
+Ahuang44
+Andy Huang
+PA3
+(7)Files for submission: Sparse.java List.java ListTest.java Matrix.java MatrixTest.java Makefile README 
+
+-Sparse.java Reads input file and creates 2 matrixes. Then does the operations given in pdf and writes them to an out file. Uses Matrix.java which uses List.java
+-List.java includes all the required functions listed in the pdf. This is for Matrix.java to use to make a matrix using Lists as rows.
+-ListTest.java tests the List.java but not much change was done to it since List.java is similar to pa1 with alterations.
+-Matrix.java uses List.java to make matrices. Lists are rows and inside the list we hold the private class Entry from Matrix.java
+-MatrixTest.java Built off the given one with a bunch more lines of commented out testing.
+-Makefile "make" will create an executable jar called Lex. It can also "make clean" to remove Lex and any associated .class files.
+-README this file with short descriptions of files submitted

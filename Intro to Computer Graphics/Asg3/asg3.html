@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Doggo in a smol simple world</title>
+  </head>
+
+  <body onload="main()">
+    <canvas id="webgl" width="400" height="400">
+    Please use a browser that supports "canvas"
+    </canvas>
+
+    <script src="lib/webgl-utils.js"></script>
+    <script src="lib/webgl-debug.js"></script>
+    <script src="lib/cuon-utils.js"></script>
+    <script src="lib/cuon-matrix-cse160.js"></script>
+    <script src="Cube.js"></script>
+    <script src="Circle.js"></script>
+    <script src="Triangle.js"></script>
+    <script src="Point.js"></script>
+    <script src="Camera.js"></script>
+    <script src="asg3.js"></script>
+    <br>
+
+    
+    <p>
+      Legs<input type="range" min="-45" max="45" value="0" class="slider" id="legSlide" name="legSlide">
+    </p>
+    <p>
+      Tail (around y axis) <input type="range" min="-45" max="45" value="0" class="slider" id="tailConSlide" name="tailConSlide">
+    </p>
+    <p>
+      Tail (around x axis) <input type="range" min="0" max="120" value="30" class="slider" id="tailSlide" name="tailSlide">
+    </p>
+    <label>Walking Animation</label>
+    <button type="button" id="animationWalkOn">ON</button>
+    <button type="button" id="animationWalkOff">OFF</button>
+
+
+    <label>Tail Animation</label>
+    <button type="button" id="animationTailOn">ON</button>
+    <button type="button" id="animationTailOff">OFF</button>
+  
+    <p>
+      <br>
+      <br>
+      <br>
+      NOTES:
+      <br>
+      <ul>
+        <li>Dirt blocks around the edge</li>
+        <li>randomly generated dirt blocks within</li>
+        <li>Dog from previous assignment and is still able to animate.</li>  
+      </ul>
+      
+      <br>
+      
+    </p>
+  </body>
+</html>

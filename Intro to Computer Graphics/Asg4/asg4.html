@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Doggo in a smol simple world</title>
+  </head>
+
+  <body onload="main()">
+    <canvas id="webgl" width="400" height="400">
+    Please use a browser that supports "canvas"
+    </canvas>
+
+    <script src="lib/webgl-utils.js"></script>
+    <script src="lib/webgl-debug.js"></script>
+    <script src="lib/cuon-utils.js"></script>
+    <script src="lib/cuon-matrix-cse160.js"></script>
+    <script src="Sphere.js"></script>
+    <script src="Cube.js"></script>
+    <script src="Circle.js"></script>
+    <script src="Triangle.js"></script>
+    <script src="Point.js"></script>
+    <script src="Camera.js"></script>
+    <script src="asg4.js"></script>
+    <br>
+
+    
+    <label>Normals:</label>
+    <button type="button" id="normalOn">Normal ON</button>
+    <button type="button" id="normalOff">Normal OFF</button>
+    <br>
+    <label>Lights:</label>
+    <button type="button" id="lightOn">Light ON</button>
+    <button type="button" id="lightOff">Light OFF</button>
+    <br>
+    <label>Lights Movement:</label>
+    <button type="button" id="lightAniOn">Light Movement ON</button>
+    <button type="button" id="lightAniOff">Light Movement OFF</button>
+    <p>
+      Light X<input type="range" min="-250" max="250" value="0" class="slider" id="lightSlideX" name="lightSlideX">
+      Light Y<input type="range" min="-250" max="250" value="0" class="slider" id="lightSlideY" name="lightSlideY">
+      Light Z<input type="range" min="-250" max="250" value="0" class="slider" id="lightSlideZ" name="lightSlideX">
+    </p>
+    <p>
+      Legs<input type="range" min="-45" max="45" value="0" class="slider" id="legSlide" name="legSlide">
+    </p>
+    <p>
+      Tail (around y axis) <input type="range" min="-45" max="45" value="0" class="slider" id="tailConSlide" name="tailConSlide">
+    </p>
+    <p>
+      Tail (around x axis) <input type="range" min="0" max="120" value="30" class="slider" id="tailSlide" name="tailSlide">
+    </p>
+    <label>Walking Animation</label>
+    <button type="button" id="animationWalkOn">ON</button>
+    <button type="button" id="animationWalkOff">OFF</button>
+
+
+    <label>Tail Animation</label>
+    <button type="button" id="animationTailOn">ON</button>
+    <button type="button" id="animationTailOff">OFF</button>
+  
+    <p>
+      <br>
+      <br>
+      <br>
+      NOTES:
+      <br>
+      <ul>
+        <li>world + animal from last assignment</li>
+        <li>Light movement can be toggled</li>
+        <li>Dog from previous assignment and is still able to animate.</li>  
+      </ul>
+      
+      <br>
+      
+    </p>
+  </body>
+</html>

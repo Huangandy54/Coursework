@@ -1,0 +1,26 @@
+{
+  "name": "cse138_assignment2",
+  "version": "1.0.0",
+  "description": "assignment 2 for CSE138",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/klimbin/cse138_assignment2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/klimbin/cse138_assignment2/issues"
+  },
+  "homepage": "https://github.com/klimbin/cse138_assignment2#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http-proxy": "^1.18.0",
+    "install": "^0.13.0",
+    "npm": "^6.12.0"
+  }
+}

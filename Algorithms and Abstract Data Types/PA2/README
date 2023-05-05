@@ -1,0 +1,11 @@
+Ahuang44
+Andy Huang
+PA2
+(6)Files for submission: Lex.c List.c List.h ListClient.c Makefile README 
+
+List.h header file for List.c
+List.c includes all the required functions listed in the pdf. This is for Lex.c to use and indirectly sort the inputs
+Lex.c uses List.c to sort. It does not use any direct sorting methods but instead using the List ADT functions to properly place things in the correct place.
+ListClient.c was provided for testing our List.c and we are told to submit this file unchanged with our project
+Makefile "make" will create executable called Lex. It can also "make clean" to remove Lex and any associated .o files.
+README this file with short descriptions of files submitted

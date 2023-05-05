@@ -1,0 +1,65 @@
+curl -s --request   PUT                                 \
+     --header    "Content-Type: application/json"    \
+     --data      '{"value": "sampleValue"}'          \
+     --write-out "%{http_code}\n"                    \
+     http://localhost:13803/kv-store/keys/sampleKey
+
+curl -s --request   PUT                                 \
+     --header    "Content-Type: application/json"    \
+     --data      '{"value": "sampleValue"}'          \
+     --write-out "%{http_code}\n"                    \
+     http://localhost:13803/kv-store/keys/sampleKey1
+
+curl -s --request   PUT                                 \
+     --header    "Content-Type: application/json"    \
+     --data      '{"value": "sampleValue"}'          \
+     --write-out "%{http_code}\n"                    \
+     http://localhost:13803/kv-store/keys/sampleKey2
+
+curl -s --request   PUT                                 \
+     --header    "Content-Type: application/json"    \
+     --data      '{"value": "sampleValue"}'          \
+     --write-out "%{http_code}\n"                    \
+     http://localhost:13803/kv-store/keys/sampleKey3
+
+curl -s --request   PUT                                 \
+     --header    "Content-Type: application/json"    \
+     --data      '{"value": "sampleValue"}'          \
+     --write-out "%{http_code}\n"                    \
+     http://localhost:13803/kv-store/keys/sampleKey4
+
+curl -s --request   PUT                                 \
+     --header    "Content-Type: application/json"    \
+     --data      '{"value": "sampleValue"}'          \
+     --write-out "%{http_code}\n"                    \
+     http://localhost:13803/kv-store/keys/sampleKey5
+
+curl -s --request   PUT                                 \
+     --header    "Content-Type: application/json"    \
+     --data      '{"value": "sampleValue"}'          \
+     --write-out "%{http_code}\n"                    \
+     http://localhost:13803/kv-store/keys/sampleKey6
+
+curl -s --request   PUT                                 \
+     --header    "Content-Type: application/json"    \
+     --data      '{"value": "sampleValue"}'          \
+     --write-out "%{http_code}\n"                    \
+     http://localhost:13803/kv-store/keys/sampleKey7
+
+curl -s --request   PUT                                 \
+     --header    "Content-Type: application/json"    \
+     --data      '{"value": "sampleValue"}'          \
+     --write-out "%{http_code}\n"                    \
+     http://localhost:13803/kv-store/keys/sampleKey8
+
+curl -s --request   PUT                                 \
+     --header    "Content-Type: application/json"    \
+     --data      '{"value": "sampleValue"}'          \
+     --write-out "%{http_code}\n"                    \
+     http://localhost:13803/kv-store/keys/sampleKey9
+
+curl -s --request   PUT                                 \
+     --header    "Content-Type: application/json"    \
+     --data      '{"value": "sampleValue"}'          \
+     --write-out "%{http_code}\n"                    \
+     http://localhost:13803/kv-store/keys/sampleKey10

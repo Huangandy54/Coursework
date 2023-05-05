@@ -1,0 +1,12 @@
+Ahuang44
+Andy Huang
+PA5
+(8)Files for submission: README Makefile List.c List.h Graph.h Graph.c GraphTest.c FindComponents.c 
+List.h header file for List.c
+List.c includes all the required functions. reused and tried to improve based on pa2
+GraphTest.c was provided for testing our Graph.c and we are told to submit this file with our project
+Graph.c includes all required functions to perform actions and create graphs.
+Graph.h header file for Graph.c
+FindComponents.c reads input and decides what to do with input. uses graph and does operations and then prints SCCs to output file
+Makefile "make" will create executable called FindComponents. It can also "make clean" to remove Lex and any associated .o files.
+README this file with short descriptions of files submitted

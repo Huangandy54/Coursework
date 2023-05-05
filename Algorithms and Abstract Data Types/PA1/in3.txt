@@ -1,0 +1,35 @@
+# sort list and write lines to outfile
+L.sort()
+   outfile.write(line)
+# read lines of this file into a list and randomize the list
+for line in L:
+#
+for line in L:
+from random import shuffle
+shuffle(L)
+#
+
+L = thisfile.readlines()
+infile.close()
+   infile.write(line)
+#------------------------------------------------------------------------------
+# close files   
+# to mix-up some other file put its name in place of 'RandomInput1.py'
+outfile = open(input('Enter output file name: '),'w')
+infile = open(input('Enter input file name: '),'w')
+
+#  RandomInput1.py
+
+# get file names and open files
+outfile.close()
+#                 python3 RandomInput1.py 
+#
+   
+#------------------------------------------------------------------------------
+
+thisfile.close()
+# write mixed lines to infile
+thisfile = open('RandomInput1.py','r')  
+
+#  Creates a matched pair of random input-output files for cmps 101 pa1 and pa2 
+#  by mixing up the lines in this file. To run this program do: 

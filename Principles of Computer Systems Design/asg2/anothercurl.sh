@@ -1,0 +1,1 @@
+curl -v http://localhost:8888/ABCDEFarqdeXYZxyzf012345-ab & curl -v http://localhost:8888/ABCDEFarqdeXYZxyzf012345-aa & wait

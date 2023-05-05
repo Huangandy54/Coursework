@@ -1,0 +1,50 @@
+format httpserver [ip] [port]
+
+GET:
+curl -s http://127.0.0.1:8888/ --request-target [27char][A-Z][a-z][0-9][-_]
+
+PUT:
+curl -s -T tosend.txt http://127.0.0.1:8888/ --request-target
+                        27char[:alpha:][:num:][-_]
+
+Response must have content length!
+
+Delete old file replace with new one
+response code is 201:
+
+netcat (dumps raw data into a socket)
+
+bad conding and how to stop it
+
+SIGTERM better than SIGKILL
+SIGSEGV segmentation fault signal
+
+pkill:
+
+sudo pkill -f "processName"
+
+malformed header:
+if no GET or PUT fails request.
+What happens if header is really big.
+Bad request
+
+two \r\n or \r\n\r\n
+
+int sscanf(const char * s, const char * format, to match);
+
+sscanf(sentence, "%s %*s %d", str, &i);
+
+limited space
+header and data
+fixed buffer.
+
+Errors to look for.
+
+File not found?
+Incorrect headers?
+Cannot write?
+Cannot Get?
+Cannot Bind?
+Invalid IP?
+
+Use enum for handling error codes.

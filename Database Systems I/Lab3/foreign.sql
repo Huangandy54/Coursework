@@ -1,0 +1,12 @@
+--Lab3 foreign.sql
+--ahuang44
+
+ALTER TABLE VISIT 
+ADD FOREIGN KEY(dinnerTableID) REFERENCES dinnerTable(dinnerTableID);
+
+ALTER TABLE VISIT
+ADD FOREIGN KEY(custID) REFERENCES customer(custID);
+
+ALTER TABLE VISIT
+ADD FOREIGN KEY(serverID) REFERENCES server(serverID)
+ON DELETE SET NULL;

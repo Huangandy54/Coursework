@@ -1,0 +1,10 @@
+Ahuang44
+Andy Huang
+PA1
+(5)Files for submission: Lex.java List.java ListClient.java Makefile README 
+
+List.java includes all the required functions listed in the pdf. This is for Lex.java to use and indirectly sort the inputs
+Lex.java uses List.java to sort. It does not use any direct sorting methods but instead using the List ADT functions to properly place things in the correct place.
+ListClient.java was provided for testing our List.java and we are told to submit this file unchanged with our project
+Makefile "make" will create an executable jar called Lex. It can also "make clean" to remove Lex and any associated .class files.
+README this file with short descriptions of files submitted

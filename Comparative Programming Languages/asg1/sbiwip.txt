@@ -1,0 +1,171 @@
+;; Intialize *function-table*
+;; for each element in the list, set the <key> to be the  car of the 
+;; element and the <value> to be the cadr of the element (first and 
+;; second values in element) stores operators and functions 
+(for-each 
+    (lambda (element) 
+        (hash-set! *function-table* (car element) (cadr element)))
+        `( 
+			(sqrt_2   1.414213562373095048801688724209698078569671875)
+			(div     ,(lambda (x y) (floor (/ x y))))
+			(mod     ,(lambda (x y) (- x (* (div x y) y))))
+			(quot    ,(lambda (x y) (truncate (/ x y))))
+			(rem     ,(lambda (x y) (- x (* (quot x y) y))))
+			(+       ,+)
+			(-       , -) 
+			(*       , *)
+			(/       ,(lambda (x y) (/ x  y )))
+			(%       ,(lambda (x y) (- (+ x 0.0) 
+			(^       ,expt)
+			(=       ,equal?)
+			(<       ,<)
+			(>       ,>)
+			(<>      ,(lambda (x y) (not (equal? x y))))
+			(>=      ,>=)
+			(<=      ,<=)
+			(abs     ,abs)
+			(acos    ,acos)
+			(asin    ,asin)
+			(atan    ,atan)
+			(ceil    ,ceiling)
+			(cos     ,cos)
+			(exp     ,exp)
+			(floor   ,floor)
+			(log     ,log)
+			(log10   (lambda (x) (/ (log x) (log 10.0))))
+			(log2     0.301029995663981195213738894724493026768189881)
+			(sqrt    ,sqrt) 		   
+			(round   ,round)
+			(sin     ,sin)
+			(tan     ,tan)
+			(trunc   ,truncate)
+
+         );;end list
+);;end for-each
+
+
+
+
+;;interprets statements that are found in the hashtable
+(define (interpret-statement statement) cond(
+		((eqv? ('dim) first-element statement) 
+			(interpret-dim (first-element (second-element statement)) 
+				(second-element (second-element statement))))
+				
+		((eqv? ('let) first-element statement)
+			(interpret-let (second-element statement) 
+				(third-element statement)))
+			  
+        ((eqv? ('goto) first-element statement)
+			(interpret-goto (second-element statement)))
+
+        ((eqv? ('if) first-element statement)
+			(interpret-if (second-element statement) 
+				(third-element statement)))
+		
+		((eqv? ('print) first-element statement)
+			(interpret-print (rest statement)))
+		
+		((eqv? ('input) first-element statement)
+			(interpret-input (rest statement)))
+			   
+);;end interpret-statement
+
+
+;; (let variable expression)
+;; let can update vector
+;; so either var is a pair that is a vector
+;; need to check if pair for let
+;; variable = (second-element let)
+;; expression = (third-element let)
+(define (interpret-let var expr)
+  ;; either its an array or variable
+  (cond ((symbol? var) 
+        (hash-set! *variable-table* var (eval-expr expr)))
+        ((pair? var) ;; check if its a vector
+		
+		
+		
+      ;; if vector is in hash table, update it
+      ;; check if within bounds
+      (if (and (hash-has-key? *variable-table* (first-element var)) 
+        (<= (- (eval-expr (second-element var)) 1) 
+        (vector-length (hash-ref *variable-table* (first-element var)))))
+          ;; set vector index to new value
+        (vector-set! (hash-ref *variable-table* (first-element var)) 
+        (exact-round (- (eval-expr (second-element var)) 1)) 
+        (eval-expr expr))
+          ;; else if its vector and not found, error!
+        (printf "Error! Vector not found~n")))))
+
+;; (dim variable expression)
+;; generates a vector of size of resultant expression
+(define (interpret-dim var expr) 
+  (hash-set! *variable-table* var 
+    (make-vector (abs (exact-round (eval-expr expr))))))
+
+;; (goto Label)
+;; either passes cdr of program referred to by label, or
+;; halts interpreter
+(define (interpret-goto label)
+  (if (hash-has-key? *label-table* label)
+      (interpret-prog (hash-ref *label-table* label))
+      (die '("Error: jump to undeclared label."))))
+
+;; (if (Relop expr expr) Label)
+;; arglist = (Relop expr expr)
+;; label = Label
+(define (interpret-if arglist label)
+  (when ((hash-ref *function-table* (first-element arglist)) 
+      (eval-expr (second-element arglist)) 
+      (eval-expr (third-element arglist)))
+      (interpret-goto label)))
+
+;; (print {Printable})
+;; where printable is either a String or an Expression
+;; print newline if printable is null
+;; printable is cadr of print
+(define interpret-print
+  (lambda (printable)
+    (let print-next ((printable printable))
+      (if (null? printable)
+        (printf "~n")
+        (begin
+        (cond ((string? (first-element printable))
+              (display (first-element printable)))
+              (else (display (eval-expr (first-element printable)))))
+        (print-next (rest printable)))))))
+                   
+;; (input Memory {Memory})
+;; where memory is an array or variable, 
+;; followed by either 0 or more array or variables
+;; arglist = (cdr input)
+;; inputcount keeps track of values successfully read in, 
+;; and when EOF becomes a sentinel value
+(define interpret-input
+  (lambda (arglist)
+    (let interpret-in ((arglist arglist) (i 0))
+      (if (not (null? arglist))
+      (let* ((var (first-element arglist)) (x (read)))
+      (if (eof-object? x)
+          (begin 
+            (hash-set! *variable-table* 'inputcount -1))
+          ;; assume all inputs are valid
+          (if (number? x) 
+          (cond  ((symbol? var) (hash-set! *variable-table* var x) 
+          (interpret-in (rest arglist) (+ i 1)))
+          ((pair? var) ;; check if its a vector
+            ;; if vector is in hash table and within bounds, update it
+          (if (and (hash-has-key? *variable-table* 
+          (first-element var)) (<= (- (eval-expr (second-element var)) 1)
+          (vector-length (first-element (hash-ref *variable-table* 
+          (first-element var))))))
+            ;; set vector index to new value
+          (begin (vector-set! (hash-ref *variable-table* 
+          (first-element var)) (- (eval-expr (second-element var)) 1) x)
+          (interpret-in (rest arglist) (+ i 1)))
+            ;; else if its vector and not found, error!
+          (printf "Error! Vector not found~n"))))
+          (begin (printf "Error! Input value NaN~n")
+          (interpret-in arglist i)))))
+      (hash-set! *variable-table* 'inputcount i)

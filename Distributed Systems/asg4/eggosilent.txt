@@ -1,0 +1,5 @@
+curl -s --request   PUT                                              \
+     --header    "Content-Type: application/json"                 \
+     --data      '{"value": "sampleValue", "causal-context": {}}' \
+     --write-out "%{http_code}\n"                                 \
+     http://localhost:13802/kv-store/keys/sampleKey

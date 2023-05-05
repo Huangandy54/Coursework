@@ -1,0 +1,6 @@
+In here, describe the mechanisms implemented for partitioning keys across nodes.
+
+# How it works
+
+For this assignment we wanted to use consistent hashing but due to ~laziness~ time constraints we decided
+to use regular hashsing with taking the modulo of the number of shards. 

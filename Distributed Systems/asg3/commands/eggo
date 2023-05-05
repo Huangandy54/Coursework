@@ -1,0 +1,75 @@
+
+docker run --name="node1"        --net=kv_subnet     \
+           --ip=10.10.0.2        -p 13802:13800      \
+           -e ADDRESS="10.10.0.2:13800"                     \
+           -e VIEW="10.10.0.2:13800,10.10.0.3:13800"            \
+           kv-store:3.0
+
+docker run --name="node2"        --net=kv_subnet     \
+           --ip=10.10.0.3        -p 13803:13800      \
+           -e ADDRESS="10.10.0.3:13800"                     \
+           -e VIEW="10.10.0.2:13800,10.10.0.3:13800"            \
+           kv-store:3.0
+
+
+curl --request   PUT                                 \
+     --header    "Content-Type: application/json"    \
+     --data      '{"value": "sampleValue"}'          \
+     --write-out "%{http_code}\n"                    \
+     http://localhost:13803/kv-store/keys/sampleKey
+
+
+curl --request GET                                   \
+     --header "Content-Type: application/json"       \
+     --write-out "%{http_code}\n"                    \
+     http://localhost:13802/kv-store/keys/sampleKey
+
+
+curl --request GET                                   \
+     --header "Content-Type: application/json"       \
+     --write-out "%{http_code}\n"                    \
+     http://localhost:13803/kv-store/key-count
+
+curl --request GET                                   \
+     --header "Content-Type: application/json"       \
+     --write-out "%{http_code}\n"                    \
+     http://localhost:13802/kv-store/key-count
+
+curl --request GET                                   \
+     --header "Content-Type: application/json"       \
+     --write-out "%{http_code}\n"                    \
+     http://localhost:13803/kv-store/keys/sampleKey
+
+curl --request DELETE                                   \
+     --header "Content-Type: application/json"       \
+     --write-out "%{http_code}\n"                    \
+     http://localhost:13803/kv-store/keys/sampleKey
+
+
+// add new node
+
+docker run --name="node3" --net=kv_subnet            \
+           --ip=10.10.0.4  -p 13804:13800            \
+           -e ADDRESS="10.10.0.4:13800"                     \
+           -e VIEW="10.10.0.2:13800,10.10.0.3:13800,10.10.0.4:13800"                    \
+           kv-store:3.0
+
+
+curl --request PUT                                   \
+     --header "Content-Type: application/json"       \
+     --data '{"view": "10.10.0.2:13800,10.10.0.3:13800,10.10.0.4:13800"}'               \
+     --write-out "%{http_code}\n"                    \
+     http://localhost:13803/kv-store/view-change
+
+
+curl --request GET                                   \
+     --header "Content-Type: application/json"       \
+     --write-out "%{http_code}\n"                    \
+     http://localhost:13804/kv-store/keys/sampleKey
+
+
+curl --request PUT                                   \
+     --header "Content-Type: application/json"       \
+     --data '{"view": "10.10.0.2:13800,10.10.0.3:13800,10.10.0.4:13800"}'               \
+     --write-out "%{http_code}\n"                    \
+     http://localhost:13802/kv-store/view-change

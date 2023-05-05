@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Draw a blue rectangle (canvas version)</title>
+  </head>
+
+  <body onload="main()">
+    <canvas id="example" width="400" height="400">
+    Please use a browser that supports "canvas"
+    </canvas>
+    
+    <script src="asg0.js"></script>
+    <script src="lib/cuon-matrix-cse160.js"></script>
+    <br>
+    <!--Entry for X-->
+    <label for="x1">v1: x</label>
+    <input type="number" id="x1" name="x1" required minlength="0">
+    <!--Entry for Y-->
+    <label for="y1">y</label>
+    <input type="number" id="y1" name="y1" required minlength="0">
+    <br>
+    <!--Entry for X-->
+    <label for="x2">v2: x</label>
+    <input type="number" id="x2" name="x2" required minlength="0">
+    <!--Entry for Y-->
+    <label for="y2">y</label>
+    <input type="number" id="y2" name="y2" required minlength="0">
+    <!--Draw1-->
+    <br>
+    <button id="button1">Draw</button>
+    <!--Operations-->
+    <br><br>
+    <label for="op-select">Operation: </label>
+    <select name="op" id="op-select">
+      <option value="Add">Add</option>
+      <option value="Subtract">Subtract</option>
+      <option value="Multiply">Multiply</option>
+      <option value="Divide">Divide</option>
+      <option value="Magnitude">Magnitude</option>
+      <option value="Normalize">Normalize</option>
+      <option value="Angle between">Angle between</option>
+      <option value="Area">Area</option>
+    </select>
+    <!--Entry for Scalar-->
+    <label for="scalar">Scalar: </label>
+    <input type="number" id="scalar" name="scalar">
+    <!--Draw2-->
+    <br>
+    <button id="button2">Draw</button>
+
+
+
+  </body>
+  
+</html>
