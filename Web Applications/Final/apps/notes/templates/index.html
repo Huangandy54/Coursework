@@ -1,0 +1,125 @@
+[[extend 'layout.html']]
+
+<div id="vue-target">
+	<section class="section">
+		<div class="title">My Notes</div>
+
+
+		<div class="level">
+			<div class="level-left">
+				<button @click="add_post" class="button is-link">
+					<span class="icon"><i class="fa fa-plus"></i></span> <span>New Note</span>
+				</button>
+			</div>
+		</div>
+	</section>
+
+	<!-- start notes -->
+	<section class="section">
+		<div class="columns is-multiline is-4 bd-klmn-columns">
+			<div class="column is-4" v-for="post in posts">
+				<div class="message" v-bind:class="post.current_color">
+					<!--Title-->
+
+					<div class="message-header">
+						<p v-if="!post.tedit" @click="do_edit_title(post._idx)">{{post.title}}</p>
+						<div class="message-header" v-if="post.tedit">
+							<textarea v-if="post.tedit" v-model="post.title" class="textarea" rows="1"
+							:class="post.title === post.server_title ? 'is-link' : 'is-danger'"
+							></textarea></div>
+							<nav class="level">
+								<div class="level-left">
+									<!--star-->
+									<div class="level-item">
+										<span @click="change_fav_status(post._idx)">
+											<i class="fa fa-star" v-if="post.fav"></i>
+											<i class="fa fa-star-o" v-if="!post.fav"></i>
+										</span>
+									</div>
+
+									<div class="level-item"></div>
+								</div>
+								<div class="level-right">
+									<div class="level-item">
+										<button class="delete" aria-label="delete" @click="do_delete(post._idx)"></button>
+									</div>
+								</div>
+
+							</nav>
+						</div>
+						<!--Content-->
+						<div class="message-body" v-if="!post.edit" @click="do_edit(post._idx)"><textarea class="textarea" readonly v-model="post.content"></textarea></div>
+						<div class="message-body" v-if="post.edit">
+							<textarea v-if="post.edit" v-model="post.content" class="textarea"
+							:class="post.content === post.server_content ? 'is-link' : 'is-danger'"
+							></textarea></div>
+							<br>
+
+							<nav class="level is-mobile">
+								<div class="level-left"></div>
+								<div class="level-right">
+									<!-- save edit button -->
+									<div class="level-item" v-if="post.edit || post.tedit" >
+										<button @click="do_save(post._idx)" class="button is-primary"
+										:class="post.is_pending ? 'is-loading' : ''">
+										<i class="fa fa-check-square-o fa-fw"></i></button>
+									</div>
+
+									<!-- Cancel edit button -->
+									<div class="level-item" v-if="(post.tedit && !post.is_pending && !post.error)||(post.edit && !post.is_pending && !post.error)" >
+										<button @click="do_cancel(post._idx)" class="button is-danger">
+										<i class="fa fa-close"></i></button>
+									</div>
+										<div class="level-item"></div>
+										<div class="level-item"></div>
+								</div>
+							</nav>
+							<!-- colors-->
+							<div class="tile is-child">
+								<nav class="level">
+									<div class="level-item">
+										<div class="notification is-dark" @click="change_color(post._idx, 'is-dark')">
+										</div>
+									</div>
+									<div class="level-item">
+										<div class="notification is-primary" @click="change_color(post._idx, 'is-primary')">
+										</div>
+									</div>
+									<div class="level-item">
+										<div class="notification is-link" @click="change_color(post._idx, 'is-link')">
+										</div>
+									</div>
+
+									<div class="level-item">
+										<div class="notification is-success" @click="change_color(post._idx, 'is-success')">
+										</div>
+									</div>
+									<div class="level-item">
+										<div class="notification is-warning" @click="change_color(post._idx, 'is-warning')">
+										</div>
+									</div>
+									<div class="level-item">
+										<div class="notification is-danger" @click="change_color(post._idx, 'is-danger')">
+										</div>
+									</div>
+								</nav>
+							</div>
+					<br>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+[[block page_scripts]]
+<!-- Loads the index-specific js for Vue -->
+<script>
+	let posts_url = "[[=XML(posts_url)]]";
+	let favorite_url = "[[=XML(favorite_url)]]";
+	let color_url = "[[=XML(color_url)]]";
+	let delete_url = "[[=XML(delete_url)]]";
+	let user_email = "[[=XML(user_email)]]";
+	let author_name = "[[=XML(author_name)]]";
+</script>
+<script src="js/index.js"></script>
+[[end]]
